@@ -6,6 +6,8 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const socketHandler = require('./socket/socketHandler');
+const corsConfig = require('./config/cors');
 
 // Load environment variables
 dotenv.config();
@@ -13,16 +15,11 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
-    methods: ['GET', 'POST'],
-    credentials: true,
-  },
-});
+const io = new Server(server, { cors: corsConfig });
+
 
 // Middleware
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
