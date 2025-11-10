@@ -1,7 +1,7 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
 import { useSocket } from './socket';
-import MessageList from './components/messageList';
+import MessageList from './components/MessageList';
 import UserList from './components/userList';
 import TypingIndicator from './components/typingIndicator';
 import ChatBox from './components/chatBox';
